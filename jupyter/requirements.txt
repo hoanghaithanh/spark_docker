@@ -1,0 +1,12 @@
+numpy
+pandas
+matplotlib
+pyspark==4.0.0
+PyArrow
+grpcio
+grpcio-status
+scikit-learn
+tensorflow[and-cuda]
+opencv-python
+spark-tensorflow-distributor
+tweepy
