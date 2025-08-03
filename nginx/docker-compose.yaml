@@ -2,6 +2,7 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx_proxy
+    depends_on: jupyter
     ports:
       - "80:80"
       - "443:443"
@@ -11,8 +12,3 @@ services:
       - ./conf.d:/etc/nginx/conf.d:ro
       - /etc/letsencrypt/archive/haithanhhoang.info/:/etc/nginx/ssl:ro
     restart: unless-stopped
-
-networks:
-  docker-hadoop_default:
-    external: true
-    name: docker-hadoop_default
