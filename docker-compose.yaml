@@ -11,8 +11,6 @@ services:
       - ./jupyter/volume:/home/jovyan/work
       - cert_folder:/etc/letsencrypt
       - data_folder:/home/jovyan/data
-    ports:
-      - 8888:8888
     networks:
       - docker-hadoop_default
     container_name: jupyter_notebook_service
