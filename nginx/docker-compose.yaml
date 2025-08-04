@@ -9,10 +9,18 @@ services:
       - docker-hadoop_default
     volumes:
       - ./conf.d:/etc/nginx/conf.d:ro
-      - /etc/letsencrypt/archive/haithanhhoang.info/:/etc/nginx/ssl:ro
+      - cert_folder:/etc/letsencrypt:ro
     restart: unless-stopped
 
 networks:
   docker-hadoop_default:
     external: true
     name: docker-hadoop_default
+
+volumes:
+  cert_folder:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /etc/letsencrypt
