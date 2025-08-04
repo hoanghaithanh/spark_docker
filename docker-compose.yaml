@@ -15,11 +15,7 @@ services:
       - docker-hadoop_default
     container_name: jupyter_notebook_service
     command: "start-notebook.sh \
-    --NotebookApp.token=${JUPYTER_TOKEN} \
-    --NotebookApp.certfile=/etc/letsencrypt/live/haithanhhoang.info/fullchain.pem \
-    --NotebookApp.keyfile=/etc/letsencrypt/live/haithanhhoang.info/privkey.pem \
-    --NotebookApp.allow_origin='*' \
-    --NotebookApp.ip='0.0.0.0'"
+    --NotebookApp.token=${JUPYTER_TOKEN}" 
 
   spark-master:
     restart: always
