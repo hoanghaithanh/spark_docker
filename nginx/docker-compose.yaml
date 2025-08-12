@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: nginx:latest
+    build: .
     container_name: nginx_proxy
     ports:
       - "80:80"
