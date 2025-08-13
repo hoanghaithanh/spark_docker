@@ -1,0 +1,10 @@
+*.pem
+*.cert
+*.csv
+*.crt
+.idea
+*.jpg
+*.log
+*.ipynb_checkpoints*
+*.ipynb
+cert/
