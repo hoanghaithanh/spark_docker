@@ -18,16 +18,19 @@ jobs:
           git pull origin release
 
       - name: Load ENV
-        run: export $(cat .env | xargs)
+        run: |
+          cd /opt/spark_docker
+          export $(cat .env | xargs) > /dev/null 2>&1
 
       - name: Deploy spark/jupyter
         run: |
           cd /opt/spark_docker
           docker compose pull
-          docker compose build --no-cache
-          docker compose up -d --remove-orphans
+          docker compose build
+          docker compose up -d --remove-orphans --scale spark-worker=3
 
       - name: Deploy nginx
         run: |
           cd /opt/spark_docker/nginx
           docker compose build --no-cache nginx
+          docker compose up -d --remove-orphans
