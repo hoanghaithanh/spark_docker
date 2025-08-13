@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
-    environments: production
+    environment: production
     env:
       JUPYTER_TOKEN: ${{ secrets.JUPYTER_TOKEN }}
 
