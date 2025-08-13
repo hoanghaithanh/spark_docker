@@ -70,7 +70,7 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: ./data
+      device: /mnt/md0/data
   cert_folder:
     driver: local
     driver_opts:

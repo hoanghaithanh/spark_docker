@@ -9,6 +9,9 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
+    environment: production
+    env:
+      JUPYTER_TOKEN: ${{ secrets.JUPYTER_TOKEN }}
 
     steps:
       - name: Update repository in /opt/spark_docker
@@ -16,11 +19,6 @@ jobs:
           cd /opt/spark_docker
           git reset --hard
           git pull origin release
-
-      - name: Load ENV
-        run: |
-          cd /opt/spark_docker
-          export $(cat .env | xargs) > /dev/null 2>&1
 
       - name: Deploy spark/jupyter
         run: |
