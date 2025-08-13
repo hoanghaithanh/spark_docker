@@ -64,7 +64,7 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: ../drrecop-data-coordination
+      device: /mnt/md0/data
   data_folder:
     driver: local
     driver_opts:
