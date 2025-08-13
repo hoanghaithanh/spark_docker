@@ -1,0 +1,33 @@
+name: Deploy on Server (Self-hosted)
+
+on:
+  push:
+    branches:
+      - release
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Update repository in /opt/spark_docker
+        run: |
+          cd /opt/spark_docker
+          git reset --hard
+          git pull origin release
+
+      - name: Load ENV
+        run: export $(cat .env | xargs)
+
+      - name: Deploy spark/jupyter
+        run: |
+          cd /opt/spark_docker
+          docker compose pull
+          docker compose build --no-cache
+          docker compose up -d --remove-orphans
+
+      - name: Deploy nginx
+        run: |
+          cd /opt/spark_docker/nginx
+          docker compose build --no-cache nginx
