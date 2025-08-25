@@ -23,4 +23,4 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /etc/letsencrypt
+      device: ${CERT_DRV}
