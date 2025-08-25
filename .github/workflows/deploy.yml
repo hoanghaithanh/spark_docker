@@ -27,6 +27,13 @@ jobs:
           docker compose build
           docker compose up -d --remove-orphans --scale spark-worker=3
 
+      - name: Deploy kafka
+        run: |
+          cd /opt/spark_docker/kafka
+          docker compose pull
+          docker compose build
+          docker compose up -d --remove-orphans
+
       - name: Deploy nginx
         run: |
           cd /opt/spark_docker/nginx
