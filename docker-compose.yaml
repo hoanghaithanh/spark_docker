@@ -9,7 +9,6 @@ services:
       - GRANT_SUDO=yes
     volumes:
       - ./jupyter/volume:/home/jovyan/work
-      - cert_folder:/etc/letsencrypt
       - data_folder:/home/jovyan/data
     networks:
       - docker-hadoop_default
@@ -59,24 +58,12 @@ services:
     networks:
       - docker-hadoop_default
 volumes:
-  script_folder:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: /mnt/md0/data
   data_folder:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /mnt/md0/data
-  cert_folder:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: /etc/letsencrypt
+      device: ${DATA_DRV}
 
 networks:
   docker-hadoop_default:
