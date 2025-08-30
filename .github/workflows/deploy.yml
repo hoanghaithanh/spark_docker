@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - release
+      - "features/*"
   workflow_dispatch:
 
 jobs:
@@ -14,11 +15,8 @@ jobs:
       JUPYTER_TOKEN: ${{ secrets.JUPYTER_TOKEN }}
 
     steps:
-      - name: Update repository in /opt/spark_docker
-        run: |
-          cd /opt/spark_docker
-          git reset --hard
-          git pull origin release
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Deploy spark/jupyter
         run: |
